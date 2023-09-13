@@ -1,0 +1,50 @@
+﻿@using Syncfusion.EJ2
+
+
+<div class="col-lg-12 control-section">
+    <div id="signature-control">
+        <div class='e-sign-heading'>
+            <span id="signdescription">Sign below</span>
+            <span class="e-btn-options">
+                <ejs-button id="signsave" cssClass="e-primary e-sign-save" content="SAVE" disabled="true"></ejs-button>
+                <ejs-button id="signclear" cssClass="e-primary e-sign-clear" content="CLEAR" disabled="true"></ejs-button>
+            </span>
+        </div>
+        <ejs-signature id="signature" style="height: 90%; width: 100%;" change="change"></ejs-signature>
+    </div>
+</div>
+
+<script>
+    document.getElementById('signsave').onclick = function (e) {
+        var signature = ej.base.getComponent(document.getElementById('signature'), 'signature');
+        signature.save();
+    };
+    document.getElementById('signclear').onclick = function (e) {
+        var signature = ej.base.getComponent(document.getElementById('signature'), 'signature');
+        var clrBtn = ej.base.getComponent(document.getElementById('signclear'), 'btn');
+        var saveBtn = ej.base.getComponent(document.getElementById('signsave'), 'btn');
+        signature.clear();
+        if (signature.isEmpty()) {
+            saveBtn.disabled = true;
+            clrBtn.disabled = true;
+        }
+    };
+
+    function change() {
+        var signature = ej.base.getComponent(document.getElementById('signature'), 'signature');
+        var clrBtn = ej.base.getComponent(document.getElementById('signclear'), 'btn');
+        var saveBtn = ej.base.getComponent(document.getElementById('signsave'), 'btn');
+        if (!signature.isEmpty()) {
+            saveBtn.disabled = false;
+            clrBtn.disabled = false;
+        }
+    }
+</script>
+
+
+<script>
+    function onClick(args) {
+        var signature = ej.base.getComponent(document.getElementById('signature'), 'signature');
+        signature.save();
+    }
+</script>
